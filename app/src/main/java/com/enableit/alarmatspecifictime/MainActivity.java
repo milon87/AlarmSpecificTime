@@ -26,7 +26,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static int hr, min, day, yr, mn;
+    public static int alarmHour, alarmMin, alarmDay, alarmYear, alarmMonth;
     final static int RQS_1 = 1;
 
     @Override
@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
     public void setAlarm(View view) {
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
-        calSet.set(Calendar.HOUR_OF_DAY, hr);
-        calSet.set(Calendar.MINUTE, min);
-        calSet.set(Calendar.DAY_OF_MONTH, day);
-        calSet.set(Calendar.YEAR, yr);
-        calSet.set(Calendar.MONTH, mn);
+        calSet.set(Calendar.HOUR_OF_DAY, alarmHour);
+        calSet.set(Calendar.MINUTE, alarmMin);
+        calSet.set(Calendar.DAY_OF_MONTH, alarmDay);
+        calSet.set(Calendar.YEAR, alarmYear);
+        calSet.set(Calendar.MONTH, alarmMonth);
 
         setAlarmN(calSet);
     }
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //date picker fragment
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
@@ -114,15 +115,15 @@ public class MainActivity extends AppCompatActivity {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
-            MainActivity.day = day;
-            yr = year;
-            mn = month;
+            alarmDay = day;
+            alarmYear = year;
+            alarmMonth = month;
         }
     }
 
+    //Time picker fragment
     public static class TimePickerFragment extends DialogFragment
             implements TimePickerDialog.OnTimeSetListener {
-
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current time as the default values for the picker
@@ -137,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             // Do something with the time chosen by the user
-            hr = hourOfDay;
-            min = minute;
+            alarmHour = hourOfDay;
+            alarmMin = minute;
         }
     }
 
